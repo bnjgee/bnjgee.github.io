@@ -1,81 +1,23 @@
-/* Define the vaporwave color palette */
 :root {
-    --color-primary: #ff6bd6;
-    --color-secondary: #7b5cff;
-    --color-tertiary: #18dcff;
-    --color-text: #ffffff;
-    --color-background: #211a33;
+    --color-background: #000000;
+    --color-text: #00FF00;
+    --color-link: #00FF00;
+    --color-link-hover: #00CC00;
+    --color-primary: #00FF00;
+    --color-secondary: #008000;
+    --color-tertiary: #00CC00;
   }
   
-  /* Apply the color palette to different elements */
   body {
     background-color: var(--color-background);
     color: var(--color-text);
-    font-family: Arial, sans-serif;
-  }
-  
-  h1, h2, h3 {
-    color: var(--color-primary);
   }
   
   a {
-    color: var(--color-secondary);
-  }
-  
-  nav ul li a {
-    color: var(--color-text);
-  }
-  
-  /* Additional styling
-  header {
-    padding: 20px;
-    background-color: var(--color-primary);
-    text-align: center;
-  }
-  */
-  main {
-    padding: 20px;
-  }
-  
-  section {
-    margin-bottom: 20px;
-  }
-  
-  footer {
-    padding: 20px;
-    background-color: var(--color-secondary);
-    text-align: center;
-  }
-
-  header {
-    background-color: #211a33;
-    padding: 10px;
-  }
-  
-  nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-  }
-  
-  nav li {
-    margin-right: 10px;
-  }
-  
-  nav li:last-child {
-    margin-right: 0;
-  }
-  
-  nav a {
-    color: #ffffff;
+    color: var(--color-link);
     text-decoration: none;
-    padding: 5px;
   }
   
-  nav a:hover {
-    background-color: #7b5cff;
+  a:hover {
+    color: var(--color-link-hover);
   }
-  
-  
-  
