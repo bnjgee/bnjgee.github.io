@@ -26,13 +26,13 @@
     color: var(--color-text);
   }
   
-  /* Additional styling */
+  /* Additional styling
   header {
     padding: 20px;
     background-color: var(--color-primary);
     text-align: center;
   }
-  
+  */
   main {
     padding: 20px;
   }
@@ -46,3 +46,36 @@
     background-color: var(--color-secondary);
     text-align: center;
   }
+
+  header {
+    background-color: #211a33;
+    padding: 10px;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  nav li {
+    margin-right: 10px;
+  }
+  
+  nav li:last-child {
+    margin-right: 0;
+  }
+  
+  nav a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 5px;
+  }
+  
+  nav a:hover {
+    background-color: #7b5cff;
+  }
+  
+  
+  
