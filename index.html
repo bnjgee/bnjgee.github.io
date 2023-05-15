@@ -1,94 +1,126 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>DOS Terminal Animation</title>
+    <title>Ben's Dev Space</title>
     <style>
-        /* Terminal Styles */
-        .terminal {
-            background-color: black;
-            color: white;
-            font-family: "Courier New", monospace;
-            padding: 10px;
-            width: 500px;
-            height: 300px;
+        body {
+            background-color: #000;
+            color: #0f0;
+            font-family: monospace;
+            padding: 20px;
+        }
+        #terminal {
+            width: 100%;
+            height: 400px;
             overflow: auto;
+            border: 1px solid #0f0;
+            padding: 10px;
         }
+        #input-container {
+            display: flex;
+            align-items: center;
 
-        .terminal p {
-            margin: 0;
+            width: 100%;
         }
-
-        .input-line::before {
-            content: "C:\\>";
-        }
-
-        .command-output::before {
-            content: "Output: ";
-            color: green;
+        #input {
+            color: #0f0;
+            background-color: #000;
+            border: none;
+            outline: none;
+            font-family: monospace;
+            font-size: 16px;
+            flex-grow: 1;
+            margin-left: 5px;
         }
     </style>
 </head>
 <body>
-<div class="terminal">
-    <p class="command-line">C:\></p>
+<div id="terminal">
+    <p> Welcome to My website Ver 0.5 (It's under construction)<br>
+        My name is Ben G<br>
+        I am a cybersecurity student
+    </p>
+</div>
+<div id="input-container">
+    <span>&gt;</span>
+    <input id="input" type="text" autofocus/>
 </div>
 
 <script>
-    const terminalElement = document.querySelector('.terminal');
-    const commandLineElement = document.querySelector('.command-line');
+    const terminal = document.getElementById('terminal');
+    const input = document.getElementById('input');
+    const cursor = document.getElementById('cursor');
+    input.addEventListener('keydown', handleKeyPress);
+    const text = 'echo Dont be afraid to use this command line!'; // Text to be typed
+    const speed = 100; // Typing speed in milliseconds
 
-    let commandIndex = 0;
-    const commands = [
-        'dir',
-        'ipconfig',
-        'ping google.com',
-        'exit'
-    ];
+    let index = 0;
+    let typingComplete = false;
 
-    function typeCommand() {
-        if (commandIndex < commands.length) {
-            const command = commands[commandIndex];
-            const commandOutput = executeCommand(command);
-            displayCommandOutput(commandOutput);
+    function typeText() {
+        if (index < text.length) {
+            input.value += text.charAt(index);
+            index++;
+            setTimeout(typeText, speed);
+        } else {
+            simulateEnter();
+        }
+    }
 
-            commandIndex++;
-            scrollToBottom();
+    function simulateEnter() {
+        const enterEvent = new KeyboardEvent('keydown', {
+            key: 'Enter',
+            keyCode: 13,
+            which: 13,
+            bubbles: true
+        });
+        input.dispatchEvent(enterEvent);
+    }
+
+    input.setAttribute('disabled', 'disabled');
+    setTimeout(typeText, 1000); // Delay start of typing animation by 1 second
+
+    input.addEventListener('keydown', function(event) {
+        if (!typingComplete) {
+            event.preventDefault();
+        }
+    });
+
+    function handleKeyPress(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            const command = input.value.trim();
+            input.value = '';
+            appendToTerminal('>' + command);
+            executeCommand(command);
         }
     }
 
     function executeCommand(command) {
-        let commandOutput = '';
-        switch (command) {
-            case 'dir':
-                commandOutput = 'Directory listing...';
-                break;
-            case 'ipconfig':
-                commandOutput = 'IP configuration...';
-                break;
-            case 'ping google.com':
-                commandOutput = 'Pinging google.com...';
-                break;
-            case 'exit':
-                commandOutput = 'Exiting...';
-                break;
-            default:
-                commandOutput = 'Command not recognized.';
+        // Add your command execution logic here
+        // This is just a basic example
+        if (command === 'help') {
+            appendToTerminal('Available commands:');
+            appendToTerminal('- help: Display available commands');
+            appendToTerminal('- date: Show current date');
+            appendToTerminal('- echo [text]: Echo the given text');
+        } else if (command === 'date') {
+            const currentDate = new Date().toLocaleDateString();
+            appendToTerminal('Current date: ' + currentDate);
+        } else if (command.startsWith('echo ')) {
+            const text = command.substring(5);
+            appendToTerminal(text);
+        } else {
+            appendToTerminal('Command not found: ' + command);
         }
-        return commandOutput;
     }
 
-    function displayCommandOutput(commandOutput) {
-        const commandOutputElement = document.createElement('p');
-        commandOutputElement.classList.add('command-output');
-        commandOutputElement.textContent = commandOutput;
-        terminalElement.appendChild(commandOutputElement);
+    function appendToTerminal(text) {
+        const line = document.createElement('p');
+        line.textContent = text;
+        terminal.appendChild(line);
+        terminal.scrollTop = terminal.scrollHeight;
     }
-
-    function scrollToBottom() {
-        terminalElement.scrollTop = terminalElement.scrollHeight;
-    }
-
-    setTimeout(typeCommand, 1000); // Delay before executing the first command
 </script>
 </body>
 </html>
