@@ -1,44 +1,94 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Ben's Dev</title>
-        <link rel="stylesheet" type="text/css" href="stilos.css">
-    </head>
-    <body>
-        <header>
-            <!-- Your header content goes here -->
-            <h1>Welcome to My Website</h1>
-            <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </nav>
-        </header>
+<head>
+    <title>DOS Terminal Animation</title>
+    <style>
+        /* Terminal Styles */
+        .terminal {
+            background-color: black;
+            color: white;
+            font-family: "Courier New", monospace;
+            padding: 10px;
+            width: 500px;
+            height: 300px;
+            overflow: auto;
+        }
 
-        <main>
-            <!-- Your main content goes here -->
-            <section>
-                <h2>About Us</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </section>
+        .terminal p {
+            margin: 0;
+        }
 
-            <section>
-                <h2>Our Services</h2>
-                <ul>
-                    <li>Service 1</li>
-                    <li>Service 2</li>
-                    <li>Service 3</li>
-                </ul>
-            </section>
-        </main>
+        .input-line::before {
+            content: "C:\\>";
+        }
 
-        <footer>
-            <!-- Your footer content goes here -->
-            <p>&copy; 2023 Your Company. All rights reserved.</p>
-        </footer>
+        .command-output::before {
+            content: "Output: ";
+            color: green;
+        }
+    </style>
+</head>
+<body>
+<div class="terminal">
+    <p class="command-line">C:\></p>
+</div>
 
-    </body>
+<script>
+    const terminalElement = document.querySelector('.terminal');
+    const commandLineElement = document.querySelector('.command-line');
+
+    let commandIndex = 0;
+    const commands = [
+        'dir',
+        'ipconfig',
+        'ping google.com',
+        'exit'
+    ];
+
+    function typeCommand() {
+        if (commandIndex < commands.length) {
+            const command = commands[commandIndex];
+            const commandOutput = executeCommand(command);
+            displayCommandOutput(commandOutput);
+
+            commandIndex++;
+            scrollToBottom();
+        }
+    }
+
+    function executeCommand(command) {
+        let commandOutput = '';
+        switch (command) {
+            case 'dir':
+                commandOutput = 'Directory listing...';
+                break;
+            case 'ipconfig':
+                commandOutput = 'IP configuration...';
+                break;
+            case 'ping google.com':
+                commandOutput = 'Pinging google.com...';
+                break;
+            case 'exit':
+                commandOutput = 'Exiting...';
+                break;
+            default:
+                commandOutput = 'Command not recognized.';
+        }
+        return commandOutput;
+    }
+
+    function displayCommandOutput(commandOutput) {
+        const commandOutputElement = document.createElement('p');
+        commandOutputElement.classList.add('command-output');
+        commandOutputElement.textContent = commandOutput;
+        terminalElement.appendChild(commandOutputElement);
+    }
+
+    function scrollToBottom() {
+        terminalElement.scrollTop = terminalElement.scrollHeight;
+    }
+
+    setTimeout(typeCommand, 1000); // Delay before executing the first command
+</script>
+</body>
 </html>
