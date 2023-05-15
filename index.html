@@ -63,6 +63,9 @@
             index++;
             setTimeout(typeText, speed);
         } else {
+            typingComplete = true;
+            input.removeAttribute('disabled');
+            input.focus();
             simulateEnter();
         }
     }
