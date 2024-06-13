@@ -9,12 +9,12 @@
 }
 
 body, html {
+  font-family: 'Ubuntu', Arial, sans-serif; /* Use Ubuntu with Arial as the fallback */
   background-color: var(--color-background);
   color: var(--color-text);
   height: 100%;
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
   box-sizing: border-box;
   padding-top: 5px;
 }
@@ -37,5 +37,12 @@ a:hover {
   .navbar li {
       flex-grow: unset;
   }
+}
+
+.no-select {
+  user-select: none; /* Prevent text selection */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
 }
 
