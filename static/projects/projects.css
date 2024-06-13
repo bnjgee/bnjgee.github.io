@@ -1,0 +1,26 @@
+/* Import body_settings */
+@import 'static/general_settings/body_settings.css';
+
+
+.container {
+    display: flex;
+    height: calc(100% - 66px); /* Adjust height to account for the navbar */
+    padding: 5px;
+    margin-top: 5px
+}
+
+.left-column {
+    width: 15%;
+    background-color: var(--color-background);
+    padding: 20px;
+    border: 2px solid var(--color-primary);
+    margin-right: 5px;
+}
+
+.right-column {
+    width: 85%;
+    background-color: var(--color-background);
+    padding: 20px;
+    border: 2px solid var(--color-primary);
+    margin-left: 5px;    
+}

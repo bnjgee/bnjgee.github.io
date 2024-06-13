@@ -1,0 +1,41 @@
+:root {
+  --color-background: #000000;
+  --color-text: #00FF00;
+  --color-link: #00FF00;
+  --color-link-hover: #00CC00;
+  --color-primary: #00FF00;
+  --color-secondary: #008000;
+  --color-tertiary: #00CC00;
+}
+
+body, html {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  padding-top: 5px;
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-link-hover);
+}
+
+/* Media Query for Responsive Design */
+@media screen and (max-width: 600px) {
+  .navbar ul {
+      flex-direction: column;
+  }
+
+  .navbar li {
+      flex-grow: unset;
+  }
+}
+

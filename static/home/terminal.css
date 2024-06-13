@@ -1,0 +1,32 @@
+/* Import body_settings */
+@import 'static/general_settings/body_settings.css';
+
+/* Terminal */
+
+#terminal {
+    margin: 10px 5px 0px 5px;
+}
+
+#terminal-display {
+    height: 500px;
+    overflow: auto;
+    border: 2px solid var(--color-primary);
+    padding: 5px;
+}
+#input-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+#input {
+    color: var(--color-primary);
+    background-color: var(--color-background);
+    border: none;
+    outline: none;
+    font-family: monospace;
+    font-size: 16px;
+    flex-grow: 1;
+    margin-left: 5px;
+}
+
+/* End of terminal */
