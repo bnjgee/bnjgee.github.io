@@ -1,6 +1,5 @@
 /* Import body_settings */
-@import 'static/general_settings/body_settings.css';
-
+@import "../general_settings/body_settings.css";
 
 .container {
     display: flex;
