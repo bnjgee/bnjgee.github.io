@@ -43,4 +43,9 @@ nav ul li a:hover {
 
 #sponsor-button {
   margin: 7px 6px 0px 0px;
+  border-radius: 0px;
+}
+
+.color-fg-sponsors, .fgColor-sponsors {
+  color: #636c76 !important;
 }
