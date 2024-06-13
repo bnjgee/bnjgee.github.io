@@ -28,6 +28,13 @@ a:hover {
   color: var(--color-link-hover);
 }
 
+.no-select {
+  user-select: none; /* Prevent text selection */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+}
+
 /* Media Query for Responsive Design */
 @media screen and (max-width: 600px) {
   .navbar ul {
@@ -37,12 +44,5 @@ a:hover {
   .navbar li {
       flex-grow: unset;
   }
-}
-
-.no-select {
-  user-select: none; /* Prevent text selection */
-  -webkit-user-select: none; /* Safari */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
 }
 
