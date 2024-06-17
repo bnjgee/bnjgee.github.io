@@ -34,15 +34,3 @@ a:hover {
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
 }
-
-/* Media Query for Responsive Design */
-@media screen and (max-width: 600px) {
-  .navbar ul {
-      flex-direction: column;
-  }
-
-  .navbar li {
-      flex-grow: unset;
-  }
-}
-

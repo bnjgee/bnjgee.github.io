@@ -49,3 +49,13 @@ nav ul li a:hover {
 .color-fg-sponsors, .fgColor-sponsors {
   color: #636c76 !important;
 }
+
+/* Media Query for Responsive Design */
+@media screen and (max-width: 600px) {
+  nav ul li a {
+    display: block;
+    text-align: center;
+    padding: 14px 6px;
+    text-decoration: none;
+  }
+}

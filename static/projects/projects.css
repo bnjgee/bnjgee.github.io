@@ -37,7 +37,7 @@
 
 .directory {
     background-color: black;
-    padding: 10px 0px 10px 45px;
+    padding: 10px 0px 10px 42px;
     border: 1px solid rgb(1, 56, 0);
 
 }
@@ -87,4 +87,16 @@
     background-color: rgb(0, 74, 14);
     border: 1px solid rgb(1, 56, 0);
     color: var(--color-primary);
+}
+
+/* Media Queries for Mobile Responsiveness */
+@media screen and (max-width: 600px) {
+    .right-column {
+        width: 65%;
+    }
+
+    .left-column {
+        width: 35%;
+    }
+
 }

@@ -1,0 +1,96 @@
+<!-- Start of static -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ben's Dev Space</title>
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="../../static/general_settings/body_settings.css">
+    <link rel="stylesheet" href="../../static/general_settings/navbar.css">
+    <link rel="stylesheet" href="../../static/projects/projects.css">
+    <link rel="stylesheet" href="../../static/directory/networking/dhcp-message.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+    <!-- Link to the JavaScript file -->
+    <script src="../../static/projects/collapse.js" defer></script>
+</head>
+<body>
+    <nav class="no-select">
+        <ul>
+            <li class="sponsor">
+                <iframe id="sponsor-button" src="https://github.com/sponsors/bnjgee/button" title="Sponsor bnjgee" height="32" width="114" style="border: 0; border-radius: 6px;"></iframe>
+            </li>
+            <div class="nav-right">
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../projects.html">Projects</a></li>
+                <li><a href="../../contact.html">Contact Me</a></li>
+            </div>
+        </ul>
+    </nav>
+<!-- End of static -->
+
+    <div class="container">
+        <button class="toggle-button" onclick="toggleColumns()"><<</button>
+        <div class="left-column">
+            <ul class="fill">
+                
+
+                <li class="directory no-select">Directory</li>
+
+                <li class="section" onclick="toggleCollapse('sysAdminItems')">Sys. Admin</li>
+                <ul id="sysAdminItems" class="collapsible">
+                    <a href="../../projects.html"><li class="sub-section">WIP</li></a>
+                    <a href="../../projects.html"><li class="sub-section">WIP</li></a>
+                </ul>
+                
+                <li class="section" onclick="toggleCollapse('networkingItems')">Networking</li>
+                <ul id="networkingItems" class="collapsible">
+                    <a href="../../directory/networking/dhcp-message.html"><li class="sub-section">DHCP Message</li></a>
+                    <a href="../../projects.html"><li class="sub-section">WIP</li></a>
+                </ul>
+
+            </ul>
+        </div>
+        <div class="right-column">
+            <h1>DHCP Messages</h1>
+            <h2>Introduction</h2>
+            <p>
+                DHCP is service that comes with its networking protocol<br>
+                In this instance we are going to focus on the networking<br>
+                side of the service.<br>
+                It has the PORT 53 UDP and TCP. And its purpose is to<br>
+                assign IP addresses automatically.
+            </p>
+
+            <h4>Pros.</h4>
+                <ul>
+                    <li>Required less individual configuarion</li>
+                    <li>Reduces OpEx (Operation Expenses)</li>
+                </ul>
+            <h4>Cons.</h4>
+                <ul>
+                    <li>Can be tempered by attacks such as DCHP Spoofing</li>
+                </ul>
+
+            <h4>Please select the specific message you want to learn more about</h4>
+
+            <table>
+                <tr>
+                    <td colspan="2">Normal DHCP MESSAGE</td>
+                </tr>
+                <tr>
+                    <td>DHCPNAK</td>
+                    <td>DHCPDECLINE</td>
+                </tr>
+                <tr>
+                    <td>DHCPRELEASE</td>
+                    <td>DHCPINFORM</td>
+                </tr>
+            </table>
+            
+        </div>
+    </div>
+
+</body>
+</html>

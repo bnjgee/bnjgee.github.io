@@ -3,7 +3,7 @@
 
 .container {
     display: flex;
-    height: calc(100% - 80px); /* Adjust height to account for the navbar */
+    height: calc(100% - 79px); /* Adjust height to account for the navbar */
     padding: 5px;
     margin: 10px 5px 5px 5px;
     border: 2px solid var(--color-primary);
@@ -102,4 +102,18 @@ ul {
 textarea {
     width: 100%;
     height: 125px;
+}
+
+/* Media Queries for Mobile Responsiveness */
+@media screen and (max-width: 600px) {
+    .container {
+        margin: 5px; /* Adjust margin for smaller screens */
+        height: calc(100% - 75px); /* Adjust height to account for the navbar */
+    }
+
+    .container-form {
+        padding: 10px; /* Adjust padding for smaller screens */
+        width: calc(100% - 80px);
+    }
+
 }
