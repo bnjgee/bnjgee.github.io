@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 
     <!-- Link to the JavaScript file -->
-    <script src="" defer></script>
+    <script src="static/projects/collapse.js" defer></script>
 </head>
 <body>
     <nav class="no-select">
@@ -30,8 +30,26 @@
 <!-- End of static -->
 
     <div class="container">
+        <button class="toggle-button" onclick="toggleColumns()"><<</button>
         <div class="left-column">
-            IT Projects
+            <ul class="fill">
+                
+
+                <li class="directory no-select">Directory</li>
+
+                <li class="section" onclick="toggleCollapse('sysAdminItems')">Sys. Admin</li>
+                <ul id="sysAdminItems" class="collapsible">
+                    <a href="projects.html"><li class="sub-section">Create a Active directory and connect Windows 7 to it (Virtual box)</li></a>
+                    <a href="projects.html"><li class="sub-section">WIP</li></a>
+                </ul>
+                
+                <li class="section" onclick="toggleCollapse('networkingItems')">Networking</li>
+                <ul id="networkingItems" class="collapsible">
+                    <a href="projects.html"><li class="sub-section">WIP</li></a>
+                    <a href="projects.html"><li class="sub-section">WIP</li></a>
+                </ul>
+
+            </ul>
         </div>
         <div class="right-column">
             Underconstruction...

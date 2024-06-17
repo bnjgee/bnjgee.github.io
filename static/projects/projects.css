@@ -5,21 +5,86 @@
     display: flex;
     height: calc(100% - 66px); /* Adjust height to account for the navbar */
     padding: 5px;
-    margin-top: 5px
+    margin-top: 5px;
+    position: relative; /* Added for positioning the toggle button */
 }
 
 .left-column {
-    width: 15%;
+    width: 17%;
     background-color: var(--color-background);
-    padding: 20px;
+    padding: 0;
     border: 2px solid var(--color-primary);
     margin-right: 5px;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    /*white-space: nowrap;*/ /* Prevent wrapping inside the left-column */
+    transition: width 0.3s ease; /* Smooth transition for width change */
+}
+
+.left-column.hidden {
+    width: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+    white-space: nowrap;
+    overflow-x: hidden
+}
+
+.left-column ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.directory {
+    background-color: black;
+    padding: 10px 0px 10px 45px;
+    border: 1px solid rgb(1, 56, 0);
+
+}
+
+.section {
+    background-color: rgb(0, 74, 14);
+    padding: 10px 0px 10px 5px;
+    border: 1px solid rgb(1, 56, 0);
+    cursor: pointer; /* Add cursor pointer to indicate it's clickable */
+    box-sizing: border-box; /* Include border and padding in width calculation */
+}
+
+.sub-section {
+    background-color: rgb(0, 54, 14);
+    padding: 5px 0px 5px 10px;
+    border-left: 1px solid rgb(1, 36, 0);
+    cursor: pointer;
+    box-sizing: border-box; /* Include border and padding in width calculation */
+    min-width: 100%; /* Ensure it stretches to the full width */
+}
+
+.collapsible {
+    display: none; /* Hide the collapsible items by default */
 }
 
 .right-column {
-    width: 85%;
+    width: 83%;
     background-color: var(--color-background);
     padding: 20px;
     border: 2px solid var(--color-primary);
     margin-left: 5px;    
+    transition: width 0.3s ease; /* Smooth transition for width change */
+}
+
+.right-column.full-width {
+    width: 100%;
+    margin-left: 0;
+}
+
+.toggle-button {
+    position: absolute;
+    top: 12px;
+    left: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+    z-index: 10;
+    background-color: rgb(0, 74, 14);
+    border: 1px solid rgb(1, 56, 0);
+    color: var(--color-primary);
 }
