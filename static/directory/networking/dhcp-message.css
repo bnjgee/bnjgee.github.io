@@ -23,4 +23,8 @@ td {
         padding: 0px;
     }
 
+    table {
+        width: 90%;
+        white-space: normal;
+    }
 }

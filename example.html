@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circle Animation</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            position: relative;
+            width: 600px;
+            height: 100px;
+        }
+        .square {
+            width: 50px;
+            height: 50px;
+            background-color: #4CAF50;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .square.left {
+            left: 0;
+        }
+        .square.right {
+            right: 0;
+        }
+        .line {
+            position: absolute;
+            top: 50%;
+            left: 25px;
+            right: 25px;
+            height: 2px;
+            background-color: #000;
+            transform: translateY(-50%);
+        }
+        .circle {
+            width: 20px;
+            height: 20px;
+            background-color: #2196F3;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 25px;
+            transform: translate(-50%, -50%);
+            animation: move 2s alternate;
+            animation-iteration-count: 4; /* 4 back and forth */
+        }
+        @keyframes move {
+            from {
+                left: 25px;
+            }
+            to {
+                left: calc(100% - 25px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="square left"></div>
+        <div class="line"></div>
+        <div class="square right"></div>
+        <div class="circle"></div>
+    </div>
+</body>
+</html>

@@ -5,7 +5,7 @@
   --color-link-hover: #00CC00;
   --color-primary: #00FF00;
   --color-secondary: #008000;
-  --color-tertiary: #00CC00;
+  --color-tertiary: #013a01;
 }
 
 body, html {
@@ -33,4 +33,28 @@ a:hover {
   -webkit-user-select: none; /* Safari */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
+}
+
+p {
+  text-align: justify;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--color-tertiary); 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary); 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-secondary); 
 }

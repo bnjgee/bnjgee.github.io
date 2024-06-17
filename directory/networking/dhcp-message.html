@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="../../static/general_settings/navbar.css">
     <link rel="stylesheet" href="../../static/projects/projects.css">
     <link rel="stylesheet" href="../../static/directory/networking/dhcp-message.css">
+    <link rel="stylesheet" href="../../static/directory/networking/normal-dhcp-message-ani.css">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
-
+    
     <!-- Link to the JavaScript file -->
     <script src="../../static/projects/collapse.js" defer></script>
 </head>
@@ -56,25 +57,17 @@
             <h1>DHCP Messages</h1>
             <h2>Introduction</h2>
             <p>
-                DHCP is service that comes with its networking protocol<br>
-                In this instance we are going to focus on the networking<br>
-                side of the service.<br>
-                It has the PORT 53 UDP and TCP. And its purpose is to<br>
+                DHCP is service that comes with its networking protocol
+                In this instance we are going to focus on the networking
+                side of the service.
+                It has the PORT 53 UDP and TCP. And its purpose is to
                 assign IP addresses automatically.
             </p>
 
-            <h4>Pros.</h4>
-                <ul>
-                    <li>Required less individual configuarion</li>
-                    <li>Reduces OpEx (Operation Expenses)</li>
-                </ul>
-            <h4>Cons.</h4>
-                <ul>
-                    <li>Can be tempered by attacks such as DCHP Spoofing</li>
-                </ul>
+
 
             <h4>Please select the specific message you want to learn more about</h4>
-
+            
             <table>
                 <tr>
                     <td colspan="2">Normal DHCP MESSAGE</td>
@@ -88,6 +81,23 @@
                     <td>DHCPINFORM</td>
                 </tr>
             </table>
+
+            <div class="graphic-container no-select">
+                <div class="line"></div>
+                <div class="circle"></div>
+                <img class="computer left" src="../../static/graphics/computer-svgrepo-com.svg" alt="Computer SVG">
+                <img class="computer right" src="../../static/graphics/computer-svgrepo-com.svg" alt="Computer SVG">
+            </div>
+
+            <h4>Pros.</h4>
+                <ul>
+                    <li>Required less individual configuarion</li>
+                    <li>Reduces OpEx (Operation Expenses)</li>
+                </ul>
+            <h4>Cons.</h4>
+                <ul>
+                    <li>Can be tempered by attacks such as DCHP Spoofing</li>
+                </ul>
             
         </div>
     </div>
