@@ -13,6 +13,10 @@ td {
     text-align: center;
 }
 
+.right-column {
+    overflow-y: auto;
+}
+
 /* Media Queries for Mobile Responsiveness */
 @media screen and (max-width: 600px) {
     td {
