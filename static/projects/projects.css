@@ -50,6 +50,17 @@
     box-sizing: border-box; /* Include border and padding in width calculation */
 }
 
+/*
+.folder-icon{
+    filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+    margin: 0;
+    padding: 0;
+    height: 30px;
+    width: 30px;
+    position: relative;
+}
+*/
+
 .sub-section {
     background-color: rgb(0, 54, 14);
     padding: 5px 0px 5px 10px;
@@ -63,21 +74,22 @@
     display: none; /* Hide the collapsible items by default */
 }
 
-.right-column {
+#right-column {
     width: 83%;
     background-color: var(--color-background);
     padding: 20px;
     border: 2px solid var(--color-primary);
     margin-left: 5px;    
     transition: width 0.3s ease; /* Smooth transition for width change */
+    overflow-y: auto;
 }
 
-.right-column.full-width {
+#right-column.full-width {
     width: 100%;
     margin-left: 0;
 }
 
-.toggle-button {
+#toggle-button {
     position: absolute;
     top: 12px;
     left: 10px;
@@ -91,7 +103,7 @@
 
 /* Media Queries for Mobile Responsiveness */
 @media screen and (max-width: 600px) {
-    .right-column {
+    #right-column {
         width: 65%;
     }
 

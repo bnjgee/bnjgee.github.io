@@ -13,7 +13,7 @@
     max-width: 20%;
     max-height: 20%;
     position: absolute;
-    top: 50%;
+    top: 70%;
     transform: translateY(-50%);
 }
 
@@ -25,9 +25,9 @@
     left: calc(100% - 80px);
 }
 
-.line {
+#line {
     position: absolute;
-    top: 50%;
+    top: 70%;
     left: 45px;
     right: 45px;
     height: 2px;
@@ -35,45 +35,29 @@
     transform: translateY(-50%);
 }
 
-.circle {
-    width: 10px;
-    height: 10px;
-    background-color: #2196F3;
-    border-radius: 50%;
+#textbox {
     position: absolute;
-    top: 50%;
-    left: 50px;
+    top: 25%;
+    left: 25px;
+    padding: 5px 10px;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+}
+
+#envelope {
+    width: 15px;
+    height: 15px;
+    filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+    position: absolute;
+    top: 70%;
     transform: translate(-50%, -50%);
-    animation: move 2s alternate;
-    animation-iteration-count: 4; /* 4 back and forth */
 }
-
-@keyframes move {
-    from {
-        left: 50px;
-    }
-    to {
-        left: calc(100% - 50px);
-    }
-}
-
 @media screen and (max-width: 600px) {
-    .line {
-        left: 55px;
-        right: 55px;
+    .computer.left {
+        right: calc(100% - 70px);
     }
-
-    .circle {
-        left: 55px;
+    
+    .computer.right {
+        left: calc(100% - 70px);
     }
-
-    @keyframes move {
-        from {
-            left: 55px;
-        }
-        to {
-            left: calc(100% - 55px);
-        }
-    }
-
 }

@@ -11,8 +11,8 @@ function toggleCollapse(id) {
 // static/scripts/toggleColumns.js
 function toggleColumns() {
     const leftColumn = document.querySelector('.left-column');
-    const rightColumn = document.querySelector('.right-column');
-    const toggleButton = document.querySelector('.toggle-button');
+    const rightColumn = document.getElementById('right-column');
+    const toggleButton = document.getElementById('toggle-button');
 
     if (leftColumn.classList.contains('hidden')) {
         leftColumn.classList.remove('hidden');

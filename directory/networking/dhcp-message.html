@@ -12,9 +12,10 @@
     <link rel="stylesheet" href="../../static/directory/networking/dhcp-message.css">
     <link rel="stylesheet" href="../../static/directory/networking/normal-dhcp-message-ani.css">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
-    
+
     <!-- Link to the JavaScript file -->
     <script src="../../static/projects/collapse.js" defer></script>
+    <script src="../../static/directory/networking/dhcp-animation.js" defer></script>
 </head>
 <body>
     <nav class="no-select">
@@ -32,7 +33,7 @@
 <!-- End of static -->
 
     <div class="container">
-        <button class="toggle-button" onclick="toggleColumns()"><<</button>
+        <button id="toggle-button" onclick="toggleColumns()"><<</button>
         <div class="left-column">
             <ul class="fill">
                 
@@ -53,7 +54,7 @@
 
             </ul>
         </div>
-        <div class="right-column">
+        <div id="right-column">
             <h1>DHCP Messages</h1>
             <h2>Introduction</h2>
             <p>
@@ -83,10 +84,17 @@
             </table>
 
             <div class="graphic-container no-select">
-                <div class="line"></div>
-                <div class="circle"></div>
+                <div id="textbox">Test</div>
+                <div id="line"></div>
+                <img id="envelope" src="../../static/graphics/email-svgrepo-com.svg">
                 <img class="computer left" src="../../static/graphics/computer-svgrepo-com.svg" alt="Computer SVG">
                 <img class="computer right" src="../../static/graphics/computer-svgrepo-com.svg" alt="Computer SVG">
+            </div>
+            <div class="buttons">
+                <button id="pauseResumeButton">Pause</button>
+                <button id="replayButton">Replay</button>
+                <button id="prevButton">|<<</button>
+                <button id="nextButton">>>|</button>
             </div>
 
             <h4>Pros.</h4>
