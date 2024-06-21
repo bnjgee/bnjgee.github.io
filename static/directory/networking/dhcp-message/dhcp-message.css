@@ -1,5 +1,5 @@
 /* Import body_settings */
-@import "../../general_settings/body_settings.css";
+@import "../../../general_settings/body_settings.css";
 
 table {
     width: 100%;
@@ -16,6 +16,8 @@ td {
 .right-column {
     overflow-y: auto;
 }
+
+
 
 /* Media Queries for Mobile Responsiveness */
 @media screen and (max-width: 600px) {

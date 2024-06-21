@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="../../static/general_settings/body_settings.css">
     <link rel="stylesheet" href="../../static/general_settings/navbar.css">
     <link rel="stylesheet" href="../../static/projects/projects.css">
-    <link rel="stylesheet" href="../../static/directory/networking/dhcp-message.css">
-    <link rel="stylesheet" href="../../static/directory/networking/normal-dhcp-message-ani.css">
+    <link rel="stylesheet" href="../../static/directory/networking/dhcp-message/dhcp-message.css">
+    <link rel="stylesheet" href="../../static/directory/networking/dhcp-message/normal-dhcp-message-ani.css">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 
     <!-- Link to the JavaScript file -->
     <script src="../../static/projects/collapse.js" defer></script>
-    <script src="../../static/directory/networking/dhcp-animation.js" defer></script>
+    <script src="../../static/directory/networking/dhcp-message/dhcp-animation.js" defer></script>
 </head>
 <body>
     <nav class="no-select">
@@ -34,7 +34,7 @@
 
     <div class="container">
         <button id="toggle-button" onclick="toggleColumns()"><<</button>
-        <div class="left-column">
+        <div id="left-column">
             <ul class="fill">
                 
 
@@ -83,18 +83,22 @@
                 </tr>
             </table>
 
-            <div class="graphic-container no-select">
-                <div id="textbox">Test</div>
-                <div id="line"></div>
-                <img id="envelope" src="../../static/graphics/email-svgrepo-com.svg">
-                <img class="computer left" src="../../static/graphics/computer-svgrepo-com.svg" alt="Computer SVG">
-                <img class="computer right" src="../../static/graphics/computer-svgrepo-com.svg" alt="Computer SVG">
-            </div>
-            <div class="buttons">
-                <button id="pauseResumeButton">Pause</button>
-                <button id="replayButton">Replay</button>
-                <button id="prevButton">|<<</button>
-                <button id="nextButton">>>|</button>
+            <div class ="player">
+                <div class="graphic-container no-select">
+                    <div id="textbox">
+                        
+                    </div>
+                    <div id="line"></div>
+                    <img id="envelope" src="../../static/graphics/email-svgrepo-com.svg">
+                    <img class="computer left" src="../../static/graphics/computer-svgrepo-com (3).svg" alt="Computer SVG">
+                    <img class="computer right" src="../../static/graphics/computer-svgrepo-com.svg" alt="Computer SVG">
+                </div>
+                <div class="buttons no-select">
+                    <button id="pauseResumeButton" class="button">Pause</button>
+                    <button id="replayButton" class="button">Replay</button>
+                    <button id="prevButton" class="button">|<<</button>
+                    <button id="nextButton" class="button">>>|</button>
+                </div>
             </div>
 
             <h4>Pros.</h4>

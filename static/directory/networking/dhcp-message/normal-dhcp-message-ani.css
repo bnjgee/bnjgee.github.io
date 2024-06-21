@@ -1,3 +1,11 @@
+/* Import body_settings */
+@import "../../../general_settings/body_settings.css";
+
+.player {
+    padding: 0;
+    margin: 0;
+}
+
 .graphic-container {
     display: flex;
     justify-content: center;
@@ -6,6 +14,7 @@
     border: 1px solid var(--color-primary);
     height: 240px;
     margin-top: 20px;
+    overflow-x: hidden;
 }
 
 .computer {
@@ -25,6 +34,32 @@
     left: calc(100% - 80px);
 }
 
+.buttons {
+    padding: 0;
+    margin: 0;
+    border: 1px solid var(--color-primary);
+    display: flex;
+    justify-content: center;
+}
+
+.button {
+    padding: 5px 5px 5px 5px;
+    margin: 0 10px 0 10px;
+    color: var(--color-primary);;
+    background-color: rgb(0, 74, 14);
+    border: 1px solid var(--color-primary);
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: rgb(0, 58, 11);
+}
+
+.button:disabled {
+    background-color: rgb(0, 58, 11);
+    pointer-events: none;
+}
+
 #line {
     position: absolute;
     top: 70%;
@@ -36,6 +71,7 @@
 }
 
 #textbox {
+    text-size-adjust: auto;
     position: absolute;
     top: 25%;
     left: 25px;

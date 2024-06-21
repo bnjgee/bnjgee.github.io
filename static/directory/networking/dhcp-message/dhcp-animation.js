@@ -5,71 +5,66 @@ const replayButton = document.getElementById('replayButton');
 const prevButton = document.getElementById('prevButton');
 const nextButton = document.getElementById('nextButton');
 const graphicContainer = document.querySelector('.graphic-container');
-const resizeButton = document.getElementById('resizeButton');
 const animationDuration = 2000; // Duration of the animation in milliseconds
 const maxIterations = 4; // 4 complete back and forth
 const envelopeLeftPX = 55;
 const textboxLeftPX = 25;
+const firstMessage = "DHCPDISCOVER"
 let iteration = 0;
 let isPaused = false;
 let startTime;
 let elapsedTime = 0;
 let requestId;
 
-// Function to update the distance and do something with it
-function updateDistance() {
-    const distance = calculateDistance();
-    console.log('Updated distance:', distance);
-    // You can add more logic here to handle the updated distance
-}
-
-// Add event listener for window resize
-window.addEventListener('resize', updateDistance);
-
-// Initial calculation
-updateDistance();
+// Insert the string into the div
+textbox.textContent = firstMessage;
 
 function calculateDistance() {
     const containerWidth = graphicContainer.clientWidth - 40;
     const envelopeWidth = circle.clientWidth;
-    return containerWidth - envelopeWidth - envelopeLeftPX; // 50px padding on both sides
+    const textboxWidth = textbox.clientWidth;
+    const circleDistance = containerWidth - envelopeWidth - envelopeLeftPX; // 50px padding on both sides
+    const textboxDistance = containerWidth - textboxWidth - textboxLeftPX - 10; // Adjust 50px padding as needed
+    return { circleDistance, textboxDistance };
 }
 
-let distance = calculateDistance();
 
-window.addEventListener('resize', () => {
-    distance = calculateDistance();
-});
+let { circleDistance, textboxDistance } = calculateDistance();
 
-function updateText() {
-    if (iteration % 2 === 1) {
-        if (iteration === 1) {
-            textbox.innerText = 'Test 2';
-        } else if (iteration === 3) {
-            textbox.innerText = 'Test 4';
-        }
-    } else {
-        if (iteration === 2) {
-            textbox.innerText = 'Test 3';
-        } else if (iteration === 0) {
-            textbox.innerText = 'Test';
-        }
+// Function to observe changes in width
+function observeWidthChange() {
+    if (!graphicContainer) {
+        console.error('Element with class "graphic-container" not found');
+        return;
     }
+
+    const resizeObserver = new ResizeObserver(entries => {
+        for (let entry of entries) {
+            console.log('Width changed to:', entry.contentRect.width);
+            ({ circleDistance, textboxDistance} = calculateDistance());
+        }
+    });
+
+    resizeObserver.observe(graphicContainer);
 }
+  
+// Call the function to start observing
+observeWidthChange();
 
 function animate(time) {
     if (!startTime) startTime = time;
     const progress = (time - startTime + elapsedTime) / animationDuration;
-    const moveDistance = Math.min(progress * distance, distance);
+    const circleMoveDistance = Math.min(progress * circleDistance, circleDistance);
+    const textboxMoveDistance = Math.min(progress * textboxDistance, textboxDistance);
 
     if (iteration % 2 === 0) {
         // Move right
-        circle.style.left = envelopeLeftPX + moveDistance + 'px';
-        textbox.style.left = textboxLeftPX + moveDistance + 'px';
+        circle.style.left = envelopeLeftPX + circleMoveDistance + 'px';
+        textbox.style.left = textboxLeftPX + textboxMoveDistance + 'px';
     } else {
         // Move left
-        circle.style.left = distance + envelopeLeftPX - moveDistance + 'px';
-        textbox.style.left = distance + textboxLeftPX - moveDistance + 'px';
+        circle.style.left = circleDistance + envelopeLeftPX - circleMoveDistance + 'px';
+        textbox.style.left = textboxDistance + textboxLeftPX - textboxMoveDistance + 'px';
     }
 
     if (progress < 1) {
@@ -84,6 +79,26 @@ function animate(time) {
             updateText();
             requestId = requestAnimationFrame(animate);
         }
+    }
+}
+
+function updateText() {
+    switch (iteration) {
+        case 1:
+            textbox.innerText = 'DHCPOFFER';
+            break;
+        case 2:
+            textbox.innerText = 'DHCPREQUEST';
+            break;
+        case 3:
+            textbox.innerText = 'DHCPACK';
+            break;
+        case 0:
+            textbox.innerText = firstMessage;
+            break;
+        default:
+            // Optional: handle other cases if necessary
+            break;
     }
 }
 
@@ -105,9 +120,10 @@ function pauseResumeAnimation() {
 
 function replayAnimation() {
     cancelAnimationFrame(requestId);
+    pauseResumeButton.disabled = false;
     circle.style.left = `${envelopeLeftPX}px`;
     circle.style.left = `${textboxLeftPX}px`;
-    textbox.innerText = 'Test';
+    textbox.innerText = firstMessage;
     iteration = 0;
     isPaused = false;
     pauseResumeButton.innerText = 'Pause';
@@ -133,11 +149,11 @@ function moveToIteration(iterationDelta) {
 
     // Calculate position based on even or odd iteration
     if (iteration % 2 === 0) {
-        circle.style.left = envelopeLeftPX + (iteration / 2) * distance + 'px';
-        textbox.style.left = textboxLeftPX + (iteration / 2) * distance + 'px';
+        circle.style.left = envelopeLeftPX + (iteration / 2) * circleDistance + 'px';
+        textbox.style.left = textboxLeftPX + (iteration / 2) * textboxDistance + 'px';
     } else {
-        circle.style.left = distance + envelopeLeftPX - ((iteration - 1) / 2) * distance + 'px';
-        textbox.style.left = distance + textboxLeftPX - ((iteration - 1) / 2) * distance + 'px';
+        circle.style.left = circleDistance + envelopeLeftPX - ((iteration - 1) / 2) * circleDistance + 'px';
+        textbox.style.left = textboxDistance + textboxLeftPX - ((iteration - 1) / 2) * textboxDistance + 'px';
     }
 
     // Restart animation if not paused

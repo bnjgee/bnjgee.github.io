@@ -10,7 +10,7 @@ function toggleCollapse(id) {
 
 // static/scripts/toggleColumns.js
 function toggleColumns() {
-    const leftColumn = document.querySelector('.left-column');
+    const leftColumn = document.getElementById('left-column');
     const rightColumn = document.getElementById('right-column');
     const toggleButton = document.getElementById('toggle-button');
 
