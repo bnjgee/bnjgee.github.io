@@ -1,32 +1,58 @@
 /* Import body_settings */
 @import "../../../general_settings/body_settings.css";
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 0;
+* {
+  box-sizing: border-box;
 }
 
-td {
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid var(--color-primary);
+}
+
+.wrapper > div {
     border: 1px solid var(--color-primary);
-    padding: 10px;
-    text-align: center;
+    padding: 1em;
+    color: var(--color-primary);
+    flex: 1 1 150px;
 }
 
 .right-column {
     overflow-y: auto;
 }
 
+.message-unselected {
+    background-color: black;
+}
 
+.message-unselected:hover {
+    background-color: rgb(0, 58, 11);
+    cursor: pointer;
+}
+
+.message-pointed {
+    background-color: blue;
+}
+
+.message-pointed:hover {
+    background-color: blue;
+}
+
+.message-selected {
+    background-color: darkgreen;
+}
+
+.message-selected:hover {
+    background-color: darkgreen;
+}
 
 /* Media Queries for Mobile Responsiveness */
 @media screen and (max-width: 600px) {
-    td {
-        padding: 0px;
-    }
-
-    table {
-        width: 90%;
-        white-space: normal;
+    .wrapper > div {
+        border: 1px solid var(--color-primary);
+        padding: 1em;
+        color: var(--color-primary);
+        flex: 1 1 50px;
     }
 }

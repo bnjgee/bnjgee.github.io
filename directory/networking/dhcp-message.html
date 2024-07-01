@@ -68,30 +68,28 @@
 
 
             <h4>Please select the specific message you want to learn more about</h4>
-            
-            <table>
-                <tr>
-                    <td colspan="2">Normal DHCP MESSAGE</td>
-                </tr>
-                <tr>
-                    <td>DHCPNAK</td>
-                    <td>DHCPDECLINE</td>
-                </tr>
-                <tr>
-                    <td>DHCPRELEASE</td>
-                    <td>DHCPINFORM</td>
-                </tr>
-            </table>
+ 
+            <div class="wrapper no-select">
+                <div id="one" class="message-unselected" onclick="DHCPMessageNumber = 1 , replayAnimation(DHCPMessageNumber)">DHCPDISCOVER</div>
+                <div id="two" class="message-unselected" onclick="DHCPMessageNumber = 1, replayAnimation(DHCPMessageNumber)">DHCPOFFER</div>
+                <div id="three" class="message-unselected" onclick="DHCPMessageNumber = 1, replayAnimation(DHCPMessageNumber)">DHCPREQUEST</div>
+                <div id="four" class="message-unselected" onclick="DHCPMessageNumber = 1, replayAnimation(DHCPMessageNumber)">DHCPACK</div>
+                <div id="five" class="message-unselected" onclick="DHCPMessageNumber = 2, replayAnimation(DHCPMessageNumber)">DHCPNAK</div>
+                <div id="six" class="message-unselected" onclick="DHCPMessageNumber = 3, replayAnimation(DHCPMessageNumber)">DHCPDECLINE</div>
+                <div id="seven" class="message-unselected" onclick="DHCPMessageNumber = 4, replayAnimation(DHCPMessageNumber)">DHCPRELEASE</div>
+                <div id="eight" class="message-unselected" onclick="DHCPMessageNumber = 5, replayAnimation(DHCPMessageNumber)">DHCPINFORM</div>
+              </div>
 
             <div class ="player">
                 <div class="graphic-container no-select">
-                    <div id="textbox">
-                        
-                    </div>
+                    <div id="textbox"></div>
+                    
                     <div id="line"></div>
                     <img id="envelope" src="../../static/graphics/email-svgrepo-com.svg">
-                    <img class="computer left" src="../../static/graphics/computer-svgrepo-com (3).svg" alt="Computer SVG">
-                    <img class="computer right" src="../../static/graphics/computer-svgrepo-com.svg" alt="Computer SVG">
+                    <img id="svg-client" class="computer" src="../../static/graphics/computer-svgrepo-com (3).svg" alt="Computer SVG">
+                    <div id="IP-client">IP: 169.254.65.23</div>
+                    <img id="svg-server" class="computer" src="../../static/graphics/computer-svgrepo-com.svg" alt="Computer SVG">
+                    <div id="IP-server" class="right">IP: 192.168.0.10</div>
                 </div>
                 <div class="buttons no-select">
                     <button id="pauseResumeButton" class="button">Pause</button>

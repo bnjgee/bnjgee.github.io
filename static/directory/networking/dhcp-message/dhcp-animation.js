@@ -1,23 +1,44 @@
+const oneWrapper = document.getElementById('one');
+const twoWrapper = document.getElementById('two');
+const threeWrapper = document.getElementById('three');
+const fourWrapper = document.getElementById('four');
+const fiveWrapper = document.getElementById('five');
+const sixWrapper = document.getElementById('six');
+const sevenWrapper = document.getElementById('seven');
+const eightWrapper = document.getElementById('eight');
 const textbox = document.getElementById('textbox');
+const IPClient = document.getElementById('IP-client');
+const IPServer = document.getElementById('IP-server');
 const circle = document.getElementById('envelope');
 const pauseResumeButton = document.getElementById('pauseResumeButton');
 const replayButton = document.getElementById('replayButton');
 const prevButton = document.getElementById('prevButton');
 const nextButton = document.getElementById('nextButton');
 const graphicContainer = document.querySelector('.graphic-container');
-const animationDuration = 2000; // Duration of the animation in milliseconds
-const maxIterations = 4; // 4 complete back and forth
+
 const envelopeLeftPX = 55;
 const textboxLeftPX = 25;
-const firstMessage = "DHCPDISCOVER"
+const DHCPFirstName = "DHCPDISCOVER";
+let animationDuration;
 let iteration = 0;
 let isPaused = false;
 let startTime;
 let elapsedTime = 0;
 let requestId;
+let DHCPMessageNumber = 0;
+let maxIterations = 0;
+let checkRight = false;
 
-// Insert the string into the div
-textbox.textContent = firstMessage;
+
+window.onload = function() {
+    animationDuration = 2000;
+    if (oneWrapper) {
+        // Simulate a click event
+        oneWrapper.click();
+    }
+};
+
+maxIterations = DHCPMessage();
 
 function calculateDistance() {
     const containerWidth = graphicContainer.clientWidth - 40;
@@ -56,45 +77,246 @@ function animate(time) {
     const progress = (time - startTime + elapsedTime) / animationDuration;
     const circleMoveDistance = Math.min(progress * circleDistance, circleDistance);
     const textboxMoveDistance = Math.min(progress * textboxDistance, textboxDistance);
+    
 
     if (iteration % 2 === 0) {
         // Move right
         circle.style.left = envelopeLeftPX + circleMoveDistance + 'px';
         textbox.style.left = textboxLeftPX + textboxMoveDistance + 'px';
+        
+
+        if (progress >= 1 && circleMoveDistance === circleDistance) {
+            iteration++;
+            console.log("iteration:",iteration);
+            DHCPMessage(DHCPMessageNumber);
+        }
+
     } else {
         // Move left
         circle.style.left = circleDistance + envelopeLeftPX - circleMoveDistance + 'px';
         textbox.style.left = textboxDistance + textboxLeftPX - textboxMoveDistance + 'px';
-    }
+    
+        if (progress >= 1 && circleMoveDistance === circleDistance) {
+            iteration++;
+            console.log("iteration:",iteration);
+            DHCPMessage(DHCPMessageNumber);
+        }
 
+    }
+    
     if (progress < 1) {
         requestId = requestAnimationFrame(animate);
-    } else if (iteration == (maxIterations - 1)) {
-        iteration++;
+    
     } else {
         startTime = null;
         elapsedTime = 0;
         if (iteration < maxIterations) {
-            iteration++;
-            updateText();
+            //iteration++;
             requestId = requestAnimationFrame(animate);
         }
+        
+    }
+    
+}
+
+
+function DHCPMessage(funcNumber) {
+    switch (funcNumber) {
+        case 1:
+            defaultDHCPMessage();
+            maxIterations = 4;
+            checkRight = false;
+            return maxIterations;
+        case 2:
+            DHCPMessageNAK();
+            maxIterations = 4;
+            checkRight = false;
+            return maxIterations;
+        case 3:
+            DHCPMessageDecline();
+            maxIterations = 3;
+            checkRight = true;
+            return maxIterations;
+        case 4:
+            DHCPMessageRelease();
+            maxIterations = 1;
+            checkRight = true;
+            return maxIterations;
+        case 5:
+            DHCPMessageInform();
+            maxIterations = 1;
+            checkRight = true;
+            return maxIterations;
+        default:
+            console.log("Invalid function number");
+            defaultDHCPMessage();
     }
 }
 
-function updateText() {
+function defaultDHCPMessage() {
+    const unselectedMessages = [fiveWrapper, sixWrapper, sevenWrapper, eightWrapper]; 
+    const selectedMessages = [oneWrapper, twoWrapper, threeWrapper, fourWrapper];
+
     switch (iteration) {
         case 1:
             textbox.innerText = 'DHCPOFFER';
+            selectedMessages.forEach(btn => btn.classList.add('message-selected'));
+            twoWrapper.classList.replace('message-selected','message-pointed');
+
+            unselectedMessages.forEach(btn => btn.classList.remove('message-selected','message-pointed'));
+            IPClient.innerText = "IP: 169.254.65.23";
             break;
         case 2:
             textbox.innerText = 'DHCPREQUEST';
+            selectedMessages.forEach(btn => btn.classList.add('message-selected'));
+            threeWrapper.classList.replace('message-selected','message-pointed');
+
+            unselectedMessages.forEach(btn => btn.classList.remove('message-selected','message-pointed'));
+            IPClient.innerText = "IP: 169.254.65.23";
             break;
         case 3:
             textbox.innerText = 'DHCPACK';
+            selectedMessages.forEach(btn => btn.classList.add('message-selected'));
+            fourWrapper.classList.replace('message-selected','message-pointed');
+
+            unselectedMessages.forEach(btn => btn.classList.remove('message-selected','message-pointed'));
+            IPClient.innerText = "IP: 169.254.65.23";
+            break;
+        case 4:
+            IPClient.innerText = "IP: 192.168.0.2";
             break;
         case 0:
-            textbox.innerText = firstMessage;
+            textbox.innerText = DHCPFirstName;
+            selectedMessages.forEach(btn => btn.classList.add('message-selected'));
+            oneWrapper.classList.replace('message-selected','message-pointed');
+
+            unselectedMessages.forEach(btn => btn.classList.remove('message-selected','message-pointed'));
+            IPClient.innerText = "IP: 169.254.65.23";
+            break;
+        default:
+            // Optional: handle other cases if necessary
+            break;
+    }
+}
+
+function DHCPMessageNAK() {
+    const unselectedMessages = [fourWrapper, sixWrapper, sevenWrapper, eightWrapper]; 
+    const selectedMessages = [oneWrapper, twoWrapper, threeWrapper, fiveWrapper];
+
+    switch (iteration) {
+        case 1:
+            textbox.innerText = 'DHCPOFFER';
+            selectedMessages.forEach(btn => btn.classList.add('message-selected'));
+            twoWrapper.classList.replace('message-selected','message-pointed');
+
+            unselectedMessages.forEach(btn => btn.classList.remove('message-selected','message-pointed'));
+            IPClient.innerText = "IP: 169.254.65.23";
+            break;
+        case 2:
+            textbox.innerText = 'DHCPREQUEST';
+            selectedMessages.forEach(btn => btn.classList.add('message-selected'));
+            threeWrapper.classList.replace('message-selected','message-pointed');
+
+            unselectedMessages.forEach(btn => btn.classList.remove('message-selected','message-pointed'));
+            IPClient.innerText = "IP: 169.254.65.23";
+            break;
+        case 3:
+            textbox.innerText = 'DHCPNACK';
+            selectedMessages.forEach(btn => btn.classList.add('message-selected'));
+            fiveWrapper.classList.replace('message-selected','message-pointed');
+
+            unselectedMessages.forEach(btn => btn.classList.remove('message-selected','message-pointed'));
+            IPClient.innerText = "IP: 169.254.65.23";
+            break;
+        case 4:
+            IPClient.innerText = "IP: 169.254.65.23";
+            break;
+        case 0:
+            textbox.innerText = DHCPFirstName;
+            selectedMessages.forEach(btn => btn.classList.add('message-selected'));
+            oneWrapper.classList.replace('message-selected','message-pointed');
+
+            unselectedMessages.forEach(btn => btn.classList.remove('message-selected','message-pointed'));
+            IPClient.innerText = "IP: 169.254.65.23";
+            break;
+        default:
+            // Optional: handle other cases if necessary
+            break;
+    }
+}
+
+function DHCPMessageDecline() {
+    const unselectedMessages = [threeWrapper, fourWrapper, fiveWrapper, sevenWrapper, eightWrapper]; 
+    const selectedMessages = [oneWrapper, twoWrapper, sixWrapper];
+
+    switch (iteration) {
+        case 1:
+            textbox.innerText = 'DHCPOFFER';
+            selectedMessages.forEach(btn => btn.classList.add('message-selected'));
+            twoWrapper.classList.replace('message-selected','message-pointed');
+
+            unselectedMessages.forEach(btn => btn.classList.remove('message-selected','message-pointed'));
+            IPClient.innerText = "IP: 169.254.65.23";
+            break;
+        case 2:
+            textbox.innerText = 'DHCPDECLINE';
+            selectedMessages.forEach(btn => btn.classList.add('message-selected'));
+            sixWrapper.classList.replace('message-selected','message-pointed');
+
+            unselectedMessages.forEach(btn => btn.classList.remove('message-selected','message-pointed'));
+            //iteration = maxIterations;
+            IPClient.innerText = "IP: 169.254.65.23";
+            break;
+
+        case 0:
+            textbox.innerText = DHCPFirstName;
+            selectedMessages.forEach(btn => btn.classList.add('message-selected'));
+            oneWrapper.classList.replace('message-selected','message-pointed');
+
+            unselectedMessages.forEach(btn => btn.classList.remove('message-selected','message-pointed'));
+            IPClient.innerText = "IP: 169.254.65.23";
+            break;
+        default:
+            // Optional: handle other cases if necessary
+            break;
+    }
+}
+
+function DHCPMessageRelease() {
+    const unselectedMessages = [oneWrapper, twoWrapper, threeWrapper, fourWrapper, fiveWrapper, sixWrapper, eightWrapper]; 
+    const selectedMessages = [sevenWrapper];
+    IPClient.innerText = "IP: 192.168.0.2";
+
+    switch (iteration) {
+        case 0:
+            textbox.innerText = "DHCPRELEASE";
+            selectedMessages.forEach(btn => btn.classList.add('message-selected'));
+            sevenWrapper.classList.replace('message-selected','message-pointed');
+
+            unselectedMessages.forEach(btn => btn.classList.remove('message-selected','message-pointed'));
+            setTimeout(() => {
+                IPClient.innerText = "IP: 169.254.65.23";
+            }, 500);
+            break;
+        default:
+            // Optional: handle other cases if necessary
+            IPClient.innerText = "IP: 169.254.65.23"
+            break;
+    }
+}
+
+function DHCPMessageInform() {
+    const unselectedMessages = [oneWrapper, twoWrapper, threeWrapper, fourWrapper, fiveWrapper, sixWrapper, sevenWrapper]; 
+    const selectedMessages = [eightWrapper];
+
+    switch (iteration) {
+        case 0:
+            textbox.innerText = "DHCPINFORM";
+            selectedMessages.forEach(btn => btn.classList.add('message-selected'));
+            eightWrapper.classList.replace('message-selected','message-pointed');
+
+            unselectedMessages.forEach(btn => btn.classList.remove('message-selected','message-pointed'));
+            IPClient.innerText = "IP: 192.168.0.2";
             break;
         default:
             // Optional: handle other cases if necessary
@@ -119,12 +341,13 @@ function pauseResumeAnimation() {
 }
 
 function replayAnimation() {
+    iteration = 0;
+    DHCPMessage(DHCPMessageNumber);
     cancelAnimationFrame(requestId);
     pauseResumeButton.disabled = false;
     circle.style.left = `${envelopeLeftPX}px`;
     circle.style.left = `${textboxLeftPX}px`;
-    textbox.innerText = firstMessage;
-    iteration = 0;
+    //textbox.innerText = DHCPFirstName;
     isPaused = false;
     pauseResumeButton.innerText = 'Pause';
     startTime = null;
@@ -145,7 +368,7 @@ function moveToIteration(iterationDelta) {
         iteration = (maxIterations - 1);
     }
     // Update text based on current iteration
-    updateText();
+    DHCPMessage(DHCPMessageNumber);
 
     // Calculate position based on even or odd iteration
     if (iteration % 2 === 0) {
@@ -160,14 +383,6 @@ function moveToIteration(iterationDelta) {
     if (!isPaused) {
         startTime = null;
         requestId = requestAnimationFrame(animate);
-    }
-}
-
-function enableNextButton() {
-    if (iteration >= (maxIterations - 1)) {
-        nextButton.disabled = true;
-    } else {
-        nextButton.disabled = false;
     }
 }
 
