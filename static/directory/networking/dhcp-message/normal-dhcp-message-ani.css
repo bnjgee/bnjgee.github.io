@@ -122,10 +122,30 @@
     }
 
     #IP-client {
-        right: calc(100% - 70px);
+        right: calc(100% - 290px);
     }
     
     #IP-server {
         left: calc(100% - 120px);
+    }
+}
+
+@media screen and (max-width: 420px) {
+    #svg-client {
+        right: calc(100% - 70px);
+    }
+    
+    #svg-server {
+        left: calc(100% - 70px);
+    }
+
+    #IP-client {
+        right: -20px;
+        font-size: 10px;
+    }
+    
+    #IP-server {
+        left: 120px;
+        font-size: 10px;
     }
 }
