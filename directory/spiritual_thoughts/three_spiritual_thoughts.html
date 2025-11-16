@@ -1,0 +1,118 @@
+<!-- Start of static -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ben's Dev Space</title>
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="../../static/general_settings/body_settings.css">
+    <link rel="stylesheet" href="../../static/general_settings/navbar.css">
+    <link rel="stylesheet" href="../../static/projects/projects.css">
+    <link rel="stylesheet" href="../../static/directory/networking/dhcp-message/dhcp-message.css">
+    <link rel="stylesheet" href="../../static/directory/networking/dhcp-message/normal-dhcp-message-ani.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+    <!-- Link to the JavaScript file -->
+    <script src="../../static/projects/collapse.js" defer></script>
+    <script src="../../static/directory/networking/dhcp-message/dhcp-animation.js" defer></script>
+</head>
+<body>
+    <nav class="no-select">
+        <ul>
+            <li class="sponsor">
+                <iframe id="sponsor-button" src="https://github.com/sponsors/bnjgee/button" title="Sponsor bnjgee" height="32" width="114" style="border: 0; border-radius: 6px;"></iframe>
+            </li>
+            <div class="nav-right">
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../projects.html">Projects</a></li>
+                <li><a href="../../contact.html">Contact Me</a></li>
+            </div>
+        </ul>
+    </nav>
+<!-- End of static -->
+
+    <div class="container">
+        <button id="toggle-button" onclick="toggleColumns()"><<</button>
+        <div id="left-column">
+            <ul class="fill">
+                
+
+                <li class="directory no-select">Directory</li>
+
+                <li class="section" onclick="toggleCollapse('sysAdminItems')">Sys. Admin</li>
+                <ul id="sysAdminItems" class="collapsible">
+                    <a href="../../projects.html"><li class="sub-section">WIP</li></a>
+                    <a href="../../projects.html"><li class="sub-section">WIP</li></a>
+                </ul>
+                
+                <li class="section" onclick="toggleCollapse('networkingItems')">Networking</li>
+                <ul id="networkingItems" class="collapsible">
+                    <a href="../../directory/networking/dhcp-message.html"><li class="sub-section">DHCP Message</li></a>
+                    <a href="../../projects.html"><li class="sub-section">WIP</li></a>
+                </ul>
+
+                <li class="section" onclick="toggleCollapse('spiritualItems')">Spiritual Thoughts</li>
+                <ul id="spiritualItems" class="collapsible">
+                    <a href="directory/spiritual_thoughts/three_spiritual_thoughts.html"><li class="sub-section">3 Spiritual Thoughts</li></a>
+                </ul>
+
+            </ul>
+        </div>
+        <div id="right-column">
+            <div id="article">
+                <h1>Spiritual Portfolio Content</h1>
+                <h2>3 Spiritual Thoughts</h2>
+                <p>
+                    These three guiding principles shape both my spiritual journey and my professional development. They remind me that discipleship is not separate from my work in IT but woven into it. Trusting in the Lord gives me direction during uncertainty, integrity anchors my decisions in honesty and responsibility, and a commitment to service transforms my skills into tools that bless others. Together, these principles help me grow not only as a future cybersecurity professional but also as a disciple who seeks to use technology for good.
+                </p>
+                <ul>
+                    <li>
+                        <strong>Guiding Principle 1: Trust in the Lord for Guidance</strong><br>
+                        This principle comes from scriptures such as Proverbs 3:5–6 and teachings like Elder Oaks’ talk “Trust in the Lord.” Trusting in God means choosing faith over fear, especially when answers are not immediate. Whether I am debugging a difficult Django issue or dealing with uncertainty in my career path, relying on the Lord helps me remain calm, patient, and focused. This principle reminds me that spiritual guidance can influence professional clarity. As I combine effort, humility, and faith, the Lord directs me toward solutions and opportunities I may not have recognized before.
+                    </li>
+
+                    <li>
+                        <strong>Guiding Principle 2: Integrity and Stewardship</strong><br>
+                        Mosiah 18:9 teaches what it means to stand as a witness of God “at all times and in all things.” Professionally, integrity is sacred, especially in cybersecurity. Handling data is not just a technical responsibility but a moral one. I believe that treating sensitive information as if it belonged to someone I personally care about leads to ethical decisions and higher-quality work. This principle influences my coding practices, the decisions I make during projects, and my long-term career aspirations in cybersecurity.
+                    </li>
+
+                    <li>
+                        <strong>Guiding Principle 3: Service Through Knowledge</strong><br>
+                        Elder Uchtdorf’s message “The Merciful Obtain Mercy” and President Nelson’s “We Can Do Better and Be Better” remind me that learning and improvement should always lead to service. In IT, the purpose of technology is to lift others, protect them, and make their lives better. This principle pushes me to build projects with the intention of helping others, whether by increasing safety, improving efficiency, or offering tools that empower people. It keeps my motivations grounded in discipleship rather than competition.
+                    </li>
+                </ul>
+            </div>
+
+            <div id="references">
+                <h2>References</h2>
+                <ol>
+                    <li>
+                        Oaks, D. H. (2019, October). <em>Trust in the Lord.</em> The Church of Jesus Christ of Latter-day Saints. 
+                        <a href="https://www.churchofjesuschrist.org/study/general-conference/2019/10/17oaks?lang=eng" target="_blank">https://www.churchofjesuschrist.org/study/general-conference/2019/10/17oaks?lang=eng</a>
+                    </li>
+                    <li>
+                        The Church of Jesus Christ of Latter‑day Saints. (n.d.). <em>Proverbs 3.</em> Retrieved November 8, 2025, from 
+                        <a href="https://www.churchofjesuschrist.org/study/scriptures/ot/prov/3?lang=eng" target="_blank">https://www.churchofjesuschrist.org/study/scriptures/ot/prov/3?lang=eng</a>
+                    </li>
+                    <li>
+                        The Church of Jesus Christ of Latter‑day Saints. (n.d.). <em>Mosiah 18.</em> Retrieved November 8, 2025, from 
+                        <a href="https://www.churchofjesuschrist.org/study/scriptures/bofm/mosiah/18?lang=eng" target="_blank">https://www.churchofjesuschrist.org/study/scriptures/bofm/mosiah/18?lang=eng</a>
+                    </li>
+                    <li>
+                        Uchtdorf, D. F. (2012, April). <em>The merciful obtain mercy.</em> In The Church of Jesus Christ of Latter‑day Saints: General Conference. Retrieved November 8, 2025, from 
+                        <a href="https://www.churchofjesuschrist.org/study/general-conference/2012/04/the-merciful-obtain-mercy?lang=eng" target="_blank">https://www.churchofjesuschrist.org/study/general-conference/2012/04/the-merciful-obtain-mercy?lang=eng</a>
+                    </li>
+                    <li>
+                        Nelson, R. M. (2019, April). <em>We can do better and be better.</em> In The Church of Jesus Christ of Latter‑day Saints: General Conference. Retrieved November 8, 2025, from 
+                        <a href="https://www.churchofjesuschrist.org/study/general-conference/2019/04/36nelson?lang=eng" target="_blank">https://www.churchofjesuschrist.org/study/general-conference/2019/04/36nelson?lang=eng</a>
+                    </li>
+                </ol>
+            </div>
+      
+        </div>
+
+    </div>
+
+</body>
+</html>
