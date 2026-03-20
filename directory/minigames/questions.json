@@ -1,0 +1,214 @@
+[
+  {
+    "question": "Which AWS service can automatically scale resources based on fluctuating usage?",
+    "options": ["EBS", "DynamoDB", "Auto Scaling", "EC2"],
+    "correct_answer": "Auto Scaling",
+    "explanation": "AWS Auto Scaling automatically adjusts the number of resources (like EC2 instances) based on demand. This ensures high availability while optimizing cost by scaling up during high usage and scaling down when demand decreases."
+  },
+  {
+    "question": "What AWS tool allows you to grant temporary, time-limited access to IAM roles?",
+    "options": ["S3", "STS", "EC2", "VPC"],
+    "correct_answer": "STS",
+    "explanation": "AWS Security Token Service (STS) provides temporary security credentials that allow users to access AWS resources for a limited time."
+  },
+  {
+    "question": "What is the default maximum number of routes you can define in a VPC route table?",
+    "options": ["20", "25", "50", "10"],
+    "correct_answer": "50",
+    "explanation": "By default, an AWS VPC route table can contain up to 50 routes."
+  },
+  {
+    "question": "What is the minimum score required to pass the AWS Cloud Practitioner (CLF-C01) certification exam?",
+    "options": ["70%", "72%", "80%", "75%"],
+    "correct_answer": "70%",
+    "explanation": "The AWS Certified Cloud Practitioner exam requires approximately 70% to pass (700 out of 1000 scaled score)."
+  },
+  {
+    "question": "Which AWS service is primarily used for storing files and objects in the cloud?",
+    "options": ["Amazon EC2", "Amazon S3", "Amazon RDS", "Amazon VPC"],
+    "correct_answer": "Amazon S3",
+    "explanation": "Amazon S3 is designed for object storage and is commonly used for files, backups, and static content."
+  },
+  {
+    "question": "Which AWS concept helps reduce costs by allowing multiple customers to share the same infrastructure securely?",
+    "options": ["Elasticity", "Multi-tenancy", "High availability", "Fault tolerance"],
+    "correct_answer": "Multi-tenancy",
+    "explanation": "Multi-tenancy allows multiple customers to share infrastructure, reducing costs through economies of scale."
+  },
+  {
+    "question": "What is a major financial advantage organizations gain when moving to AWS?",
+    "options": ["Increased hardware ownership", "Fixed infrastructure costs", "Reduced capital expenditure (CapEx)", "Higher upfront investment"],
+    "correct_answer": "Reduced capital expenditure (CapEx)",
+    "explanation": "AWS shifts costs from CapEx to OpEx, allowing businesses to pay only for what they use."
+  },
+  {
+    "question": "Why do many enterprises choose AWS over other cloud providers?",
+    "options": ["It offers fewer services but lower prices", "It has the largest global infrastructure and service portfolio", "It requires long-term contracts", "It only supports large enterprises"],
+    "correct_answer": "It has the largest global infrastructure and service portfolio",
+    "explanation": "AWS offers a broad range of services and global reach, making it suitable for many workloads."
+  },
+  {
+    "question": "Which of the following correctly describes the AWS Free Tier model?",
+    "options": ["Only one type of free service", "Includes 12-month free, always free, and free trials", "Only available for enterprises", "Unlimited free usage"],
+    "correct_answer": "Includes 12-month free, always free, and free trials",
+    "explanation": "AWS Free Tier includes 12-month free usage, always free services, and short-term trials."
+  },
+  {
+    "question": "What happens if you exceed AWS Free Tier limits?",
+    "options": ["Services stop immediately", "You are charged standard pay-as-you-go rates", "AWS blocks your account", "You receive unlimited credits"],
+    "correct_answer": "You are charged standard pay-as-you-go rates",
+    "explanation": "Once you exceed Free Tier limits, AWS charges based on standard pricing."
+  },
+  {
+    "question": "What is the main characteristic of AWS pay-as-you-go pricing?",
+    "options": ["Pay fixed monthly fees", "Pay only for resources used", "Pay only after one year", "Pay only for storage"],
+    "correct_answer": "Pay only for resources used",
+    "explanation": "You are billed only for the resources you consume."
+  },
+  {
+    "question": "How can organizations reduce AWS costs for predictable workloads?",
+    "options": ["Use Free Tier only", "Use Reserved Instances", "Avoid cloud services", "Use only on-demand pricing"],
+    "correct_answer": "Use Reserved Instances",
+    "explanation": "Reserved Instances provide discounts when committing to long-term usage."
+  },
+  {
+    "question": "What does AWS mean by “pay less when you use more”?",
+    "options": ["Free services after a limit", "Volume-based pricing discounts", "Fixed pricing tiers", "Subscription billing"],
+    "correct_answer": "Volume-based pricing discounts",
+    "explanation": "Costs per unit decrease as usage increases."
+  },
+  {
+    "question": "When should you use the AWS Pricing Calculator?",
+    "options": ["After deploying services", "To monitor real-time usage", "Before deployment to estimate costs", "To stop billing"],
+    "correct_answer": "Before deployment to estimate costs",
+    "explanation": "It helps estimate costs before building your architecture."
+  },
+  {
+    "question": "What is the main function of AWS Cost Explorer?",
+    "options": ["Estimate future architecture costs", "Deploy services automatically", "Analyze and visualize past and current costs", "Provide free resources"],
+    "correct_answer": "Analyze and visualize past and current costs",
+    "explanation": "Cost Explorer helps track and forecast spending."
+  },
+
+  {
+    "question": "Which AWS service is primarily used to manage user permissions and access to AWS resources?",
+    "options": ["Amazon EC2", "AWS IAM", "Amazon S3", "AWS Lambda"],
+    "correct_answer": "AWS IAM",
+    "explanation": "IAM allows secure control of access to AWS resources."
+  },
+  {
+    "question": "What is the principle of least privilege in AWS?",
+    "options": ["Giving all users full access", "Giving users only the permissions they need", "Allowing temporary access to all services", "Disabling all permissions"],
+    "correct_answer": "Giving users only the permissions they need",
+    "explanation": "It minimizes risk by limiting access to only what is necessary."
+  },
+  {
+    "question": "Which AWS feature provides temporary security credentials?",
+    "options": ["AWS Shield", "AWS STS", "AWS Organizations", "Amazon VPC"],
+    "correct_answer": "AWS STS",
+    "explanation": "STS provides temporary credentials for secure access."
+  },
+  {
+    "question": "Which AWS service helps protect applications from Distributed Denial of Service (DDoS) attacks?",
+    "options": ["AWS Shield", "AWS IAM", "Amazon S3", "AWS Config"],
+    "correct_answer": "AWS Shield",
+    "explanation": "AWS Shield provides managed DDoS protection."
+  },
+  {
+    "question": "What is the purpose of AWS CloudTrail?",
+    "options": ["Store files", "Monitor performance", "Track user activity and API calls", "Deploy applications"],
+    "correct_answer": "Track user activity and API calls",
+    "explanation": "CloudTrail logs API activity for auditing and security."
+  },
+  {
+    "question": "Which AWS service is used to continuously monitor and record configuration changes for compliance?",
+    "options": ["AWS Config", "Amazon EC2", "AWS Lambda", "Amazon RDS"],
+    "correct_answer": "AWS Config",
+    "explanation": "AWS Config tracks changes and ensures compliance."
+  },
+  {
+    "question": "What is an IAM role primarily used for?",
+    "options": ["Storing data", "Assigning temporary permissions to entities", "Hosting applications", "Managing billing"],
+    "correct_answer": "Assigning temporary permissions to entities",
+    "explanation": "IAM roles grant temporary permissions without long-term credentials."
+  },
+  {
+    "question": "Which AWS feature allows you to enforce multi-factor authentication (MFA)?",
+    "options": ["AWS IAM", "AWS Shield", "Amazon VPC", "AWS Lambda"],
+    "correct_answer": "AWS IAM",
+    "explanation": "IAM supports MFA for additional security."
+  },
+  {
+    "question": "Which AWS service helps you centrally manage multiple AWS accounts and apply security policies?",
+    "options": ["AWS Organizations", "AWS EC2", "Amazon S3", "AWS CloudFront"],
+    "correct_answer": "AWS Organizations",
+    "explanation": "AWS Organizations enables centralized account and policy management."
+  },
+  {
+    "question": "What does AWS mean by the “shared responsibility model”?",
+    "options": ["AWS manages everything", "Customers manage everything", "AWS and customers share security responsibilities", "Security is optional"],
+    "correct_answer": "AWS and customers share security responsibilities",
+    "explanation": "AWS secures the cloud, customers secure what they run in it."
+  },
+
+  {
+    "question": "Which AWS service allows you to launch and manage virtual servers in the cloud?",
+    "options": ["Amazon S3", "Amazon EC2", "AWS CloudFormation", "Amazon CloudFront"],
+    "correct_answer": "Amazon EC2",
+    "explanation": "EC2 provides scalable virtual servers in the cloud."
+  },
+  {
+    "question": "What is an Amazon Machine Image (AMI) used for in EC2?",
+    "options": ["Monitoring performance metrics", "Defining a template for launching instances", "Storing object data", "Managing user permissions"],
+    "correct_answer": "Defining a template for launching instances",
+    "explanation": "An AMI contains the OS and configuration for launching EC2 instances."
+  },
+  {
+    "question": "Which AWS feature automatically adjusts the number of EC2 instances based on demand?",
+    "options": ["Elastic Load Balancing", "AWS CloudFront", "Auto Scaling", "Amazon S3"],
+    "correct_answer": "Auto Scaling",
+    "explanation": "Auto Scaling dynamically adjusts capacity to match demand."
+  },
+  {
+    "question": "What is the main purpose of Elastic Load Balancing (ELB)?",
+    "options": ["Store files in the cloud", "Distribute traffic across multiple servers", "Encrypt data at rest", "Monitor application logs"],
+    "correct_answer": "Distribute traffic across multiple servers",
+    "explanation": "ELB improves availability by distributing incoming traffic."
+  },
+  {
+    "question": "Which storage service provides block-level storage that can be attached to EC2 instances?",
+    "options": ["Amazon S3", "Amazon EBS", "AWS CloudFront", "Amazon Glacier"],
+    "correct_answer": "Amazon EBS",
+    "explanation": "EBS provides persistent block storage volumes for EC2."
+  },
+  {
+    "question": "What type of storage does Amazon S3 provide?",
+    "options": ["Block storage", "File storage", "Object storage", "Database storage"],
+    "correct_answer": "Object storage",
+    "explanation": "S3 stores data as objects within buckets."
+  },
+  {
+    "question": "By default, how is access configured for new S3 buckets?",
+    "options": ["Publicly accessible", "Accessible only within a VPC", "Blocked from public access", "Accessible to all AWS users"],
+    "correct_answer": "Blocked from public access",
+    "explanation": "S3 buckets are private by default."
+  },
+  {
+    "question": "What is AWS CloudFormation primarily used for?",
+    "options": ["Monitoring applications", "Delivering content globally", "Automating infrastructure deployment", "Managing user authentication"],
+    "correct_answer": "Automating infrastructure deployment",
+    "explanation": "CloudFormation enables Infrastructure as Code."
+  },
+  {
+    "question": "Which AWS service helps deliver content to users globally with low latency?",
+    "options": ["Amazon EC2", "AWS CloudFormation", "Amazon CloudFront", "Amazon EBS"],
+    "correct_answer": "Amazon CloudFront",
+    "explanation": "CloudFront uses edge locations to deliver content quickly."
+  },
+  {
+    "question": "What format is commonly used for AWS policies and CloudFormation templates?",
+    "options": ["XML", "JSON", "CSV", "HTML"],
+    "correct_answer": "JSON",
+    "explanation": "JSON is widely used in AWS for policies and templates."
+  }
+]

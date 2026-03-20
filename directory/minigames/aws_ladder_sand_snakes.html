@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Snakes & Ladders</title>
+<style>
+    body {
+        font-family: Arial;
+        text-align: center;
+        background: #f0f0f0;
+    }
+
+    h1 {
+        margin-top: 20px;
+    }
+
+    #board {
+        display: grid;
+        grid-template-columns: repeat(10, 50px);
+        gap: 2px;
+        justify-content: center;
+        margin: 20px auto;
+    }
+
+    .tile {
+        width: 50px;
+        height: 50px;
+        background: white;
+        border: 1px solid #ccc;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .player {
+        background: red;
+        color: white;
+        border-radius: 50%;
+        padding: 5px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+</style>
+</head>
+<body>
+
+<h1>🎲 Snakes & Ladders</h1>
+
+<div id="instructionsPopup" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+">
+    <div style="
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        width: 500px;
+        max-height: 80vh;
+        overflow-y: auto;
+        text-align: left;
+        font-family: Arial;
+        position: relative;
+    ">
+        
+        <!-- ❌ Exit button -->
+        <button onclick="closeInstructions()" style="
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            z-index: 100;
+        ">X</button>
+
+        <h2 style="text-align:center;">🎲 Snakes & Ladders – Instructions</h2>
+
+        <h3>🎯 Objective</h3>
+        <p>Reach square 60 first to win the game 🎉</p>
+
+        <h3>▶️ How to Play</h3>
+        <ol>
+            <li>Click <strong>Roll Dice</strong></li>
+            <li>Move automatically across the board</li>
+            <li>Answer questions after each turn</li>
+        </ol>
+
+        <h3>🐍 Snakes</h3>
+        <p>Landing on a snake moves you down.</p>
+
+        <h3>🪜 Ladders</h3>
+        <p>Landing on a ladder moves you up.</p>
+
+        <h3>⚠️ Rules</h3>
+        <ul>
+            <li>Max square is 60</li>
+            <li>You must answer questions to continue</li>
+        </ul>
+
+    </div>
+</div>
+
+<div id="popup" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+">
+    <div style="
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        width: 300px;
+    ">
+        <p id="popupQuestion"></p>
+        <div id="popupOptions"></div>
+        <p id="popupFeedback"></p>
+        <p id="popupExplaination" style="text-align: justify;"></p>
+        <button id="closeBtn" onclick="closePopup()" style="display:none;">Close</button>
+    </div>
+</div>
+
+<div>
+    <button id="instructionsBtn" onclick="instructionsButton()">Instructions</button>
+</div>
+
+
+<div style="position: relative; display: inline-block;">
+    <div id="board"></div>
+
+    <svg id="lines" width="520" height="322"
+         style="position:absolute; top:0; left:0; pointer-events:none;">
+    </svg>
+</div>
+
+<div>
+    <button id="rollBtn" onclick="rollDice()">Roll Dice</button>
+    <p id="status">Click roll to start!</p>
+</div>
+
+
+<script>
+    const board = document.getElementById("board");
+    const statusText = document.getElementById("status");
+
+    let playerPosition = 1;
+
+    let questions = [];
+
+    async function loadQuestions() {
+        const res = await fetch("questions.json");
+        questions = await res.json();
+    }
+
+    loadQuestions();
+
+    let currentQuestion = null;
+    let answeredCorrectly = false;
+
+    function showQuestionPopup() {
+        currentQuestion = questions[Math.floor(Math.random() * questions.length)];
+        answeredCorrectly = false;
+
+        document.getElementById("popup").style.display = "flex";
+        document.getElementById("popupQuestion").innerText = currentQuestion.question;
+
+        const optionsDiv = document.getElementById("popupOptions");
+        optionsDiv.innerHTML = "";
+
+        const feedback = document.getElementById("popupFeedback");
+        feedback.innerText = "";
+
+        const closeBtn = document.getElementById("closeBtn");
+        closeBtn.style.display = "none";
+
+        currentQuestion.options.forEach(option => {
+            const btn = document.createElement("button");
+            btn.innerText = option;
+            btn.style.display = "block";
+            btn.style.margin = "5px auto";
+
+            btn.onclick = () => handleAnswer(option);
+
+            optionsDiv.appendChild(btn);
+        });
+    }
+
+    async function handleAnswer(selected) {
+        const feedback = document.getElementById("popupFeedback");
+        const explaining = document.getElementById("popupExplaination");
+        const closeBtn = document.getElementById("closeBtn");
+
+        // Disable options after click
+        document.querySelectorAll("#popupOptions button").forEach(b => b.disabled = true);
+
+        if (selected === currentQuestion.correct_answer) {
+            answeredCorrectly = true;
+            feedback.innerText = "✅ You are right :)";
+        } else {
+            answeredCorrectly = false;
+            feedback.innerText = "❌ You are wrong :(";
+            explaining.innerHTML = "<strong>Explanation:</strong> " + currentQuestion.explanation;
+        }
+
+        closeBtn.style.display = "block";
+    }
+
+    async function closePopup() {
+        document.getElementById("popup").style.display = "none";
+
+        // ❌ Wrong answer → move back 2 steps WITH animation
+        if (!answeredCorrectly) {
+            let newPos = Math.max(1, playerPosition - 2);
+
+            statusText.innerText = "❌ Moving back 2 steps...";
+            await movePlayerStepByStep(newPos);
+        }
+
+        // ✅ Enable button ONLY after movement finishes
+        document.getElementById("rollBtn").disabled = false;
+    }
+    
+    // Snakes and ladders (start: end)
+    const jumps = {
+        // 🐍 Snakes
+        17: 3,
+        26: 14,
+        21: 19,
+        37: 23,
+        43: 39,
+        45: 35,
+        53: 49,
+        59: 41,
+
+        // 🪜 Ladders
+        8: 12,
+        16: 24,
+        28: 32,
+        34: 48,
+        38: 44,
+        46: 56,
+    };
+
+    // Create board
+function createBoard() {
+    let tiles = [];
+
+    for (let row = 5; row >= 0; row--) {
+        let start = row * 10 + 1;
+        let end = start + 9;
+
+        let rowTiles = [];
+        for (let i = start; i <= end; i++) {
+            rowTiles.push(i);
+        }
+
+        if ((5 - row) % 2 === 1) {
+            rowTiles.reverse();
+        }
+
+        tiles = tiles.concat(rowTiles);
+    }
+
+    tiles.reverse(); // make 50 at top
+
+    tiles.forEach(num => {
+        const tile = document.createElement("div");
+        tile.classList.add("tile");
+        tile.id = "tile-" + num;
+        tile.innerText = num;
+        board.appendChild(tile);
+    });
+
+    updatePlayer();
+}
+
+    function updatePlayer() {
+        document.querySelectorAll(".tile").forEach(t => t.innerHTML = t.id.split("-")[1]);
+
+        const currentTile = document.getElementById("tile-" + playerPosition);
+        currentTile.innerHTML = playerPosition + "<div class='player'>P</div>";
+    }
+
+async function rollDice() {
+    const button = document.getElementById("rollBtn");
+    button.disabled = true;
+
+    let dice = Math.floor(Math.random() * 6) + 1;
+    statusText.innerText = "You rolled: " + dice;
+
+    let target = playerPosition + dice;
+    if (target > 60) target = 60;
+
+    // 🎬 Move player
+    await movePlayerStepByStep(target);
+
+    // 🐍🪜 Check jumps
+    if (jumps[playerPosition]) {
+        let newPos = jumps[playerPosition];
+
+        await sleep(500);
+
+        if (newPos > playerPosition) {
+            statusText.innerText += " 🪜 Ladder!";
+        } else {
+            statusText.innerText += " 🐍 Snake!";
+        }
+
+        await movePlayerStepByStep(newPos);
+    }
+
+    // 🎉 Win condition
+    if (playerPosition === 60) {
+        statusText.innerText = "🎉 You Win!";
+        return;
+    }
+
+    // 🧾 SHOW POPUP (instead of enabling button here)
+    showQuestionPopup();
+}
+
+
+async function movePlayerStepByStep(target) {
+    while (playerPosition < target) {
+        playerPosition++;
+        updatePlayer();
+        await sleep(300); // speed of movement
+    }
+
+    while (playerPosition > target) {
+        playerPosition--;
+        updatePlayer();
+        await sleep(300);
+    }
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+    createBoard();
+    setTimeout(drawConnections, 100); // wait for layout
+
+
+    function getTileCenter(tileNumber) {
+        const tile = document.getElementById("tile-" + tileNumber);
+        const rect = tile.getBoundingClientRect();
+        const boardRect = board.getBoundingClientRect();
+
+        return {
+            x: rect.left - boardRect.left + rect.width / 2,
+            y: rect.top - boardRect.top + rect.height / 2
+        };
+    }
+
+    function drawLine(start, end, color) {
+        const svg = document.getElementById("lines");
+
+        const p1 = getTileCenter(start);
+        const p2 = getTileCenter(end);
+
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+
+        line.setAttribute("x1", p1.x);
+        line.setAttribute("y1", p1.y + 15);
+        line.setAttribute("x2", p2.x);
+        line.setAttribute("y2", p2.y + 15);
+        line.setAttribute("stroke", color);
+        line.setAttribute("stroke-width", 4);
+
+        svg.appendChild(line);
+    }
+
+    function drawConnections() {
+        // 🐍 Snakes (RED)
+        const snakes = [
+            [17, 3],
+            [26, 14],
+            [21, 19],
+            [37, 23],
+            [43, 39],
+            [45, 35],
+            [59, 41],
+            [53, 49],
+        ];
+
+        snakes.forEach(([start, end]) => {
+            drawLine(start, end, "red");
+        });
+
+        // 🪜 Ladders (GREEN)
+        const ladders = [
+            [8, 12],
+            [16, 24],
+            [28, 32],
+            [28, 32],
+            [34, 48],
+            [38, 44],
+            [46, 56],
+        ];
+
+        ladders.forEach(([start, end]) => {
+            drawLine(start, end, "green");
+        });
+    }
+
+function instructionsButton() {
+    document.getElementById("instructionsPopup").style.display = "flex";
+}
+
+function closeInstructions() {
+    document.getElementById("instructionsPopup").style.display = "none";
+}
+
+</script>
+
+</body>
+</html>
